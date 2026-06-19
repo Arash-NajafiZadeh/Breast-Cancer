@@ -1,6 +1,6 @@
 (function(){
   var sections = window.APP_SECTIONS || [];
-  var mainOrder = [1,30,3,2,7,5,6,4,0,9,31];
+  var mainOrder = [0,1,30,3,2,7,5,6,4,9,31];
   var cards = document.getElementById('sectionCards') || document.getElementById('steps');
   var steps = document.getElementById('steps');
   var reader = document.getElementById('reader');
@@ -132,16 +132,16 @@
     6:['Care After Treatment','Follow-up, recovery, and quality of life','♥'],
     7:['Myths and Facts','Common wrong beliefs corrected','?'],
     9:['From Stage to Battle','Stories of hope and awareness','★'],
-    30:['Breast Self-Exam','Complete step-by-step guide','🎀'],
-    31:['About Us','Coming soon','ℹ️']
+    30:['Breast Self-Exam','Complete step-by-step guide','🎗️'],
+    31:['About Us','About this research-based application','✦']
   };
   function isEnglish(){return currentLang==='en';}
   function uiLabel(fa,en){return isEnglish()?en:fa;}
   function clickHint(){return isEnglish()?'Tap to open':'برای باز کردن لمس کنید';}
   function metaFor(index){
     if(isEnglish() && enPath[index]){return {title:enPath[index][0],subtitle:enPath[index][1],icon:enPath[index][2]};}
-    if(index===30){return {title:'خودآزمایی پستان',subtitle:'آموزش کامل مرحله‌به‌مرحله',icon:'🎀'};}
-    if(index===31){return {title:'درباره ما',subtitle:'به‌زودی تکمیل می‌شود',icon:'ℹ️'};}
+    if(index===30){return {title:'خودآزمایی پستان',subtitle:'آموزش کامل مرحله‌به‌مرحله',icon:'🎗️'};}
+    if(index===31){return {title:'درباره ما',subtitle:'معرفی اپلیکیشن و پشتوانه علمی',icon:'✦'};}
     if(index===9){return {title:'از صحنه تا نبرد',subtitle:sections[9].subtitle,icon:sections[9].icon};}
     return {title:cleanTitle(sections[index].title),subtitle:sections[index].subtitle,icon:sections[index].icon};
   }
@@ -183,7 +183,7 @@
     if(index===2){return '<div class="risk-board"><section class="risk-column danger"><h3>Factors that may increase risk</h3><div class="mini-icon-grid">'+['Age','Family history','Personal history','Dense breast tissue','Hormonal factors','Unhealthy weight','Low physical activity','Alcohol or smoking'].map(function(t){return enTile(t,'!',t+' can be related to higher breast cancer risk depending on personal conditions.');}).join('')+'</div></section><section class="risk-column safe"><h3>Protective habits</h3><div class="mini-icon-grid">'+['Healthy weight','Healthy diet','Regular activity','No smoking','Avoid alcohol','Breastfeeding','Regular medical follow-up','Genetic counseling when needed'].map(function(t){return enTile(t,'✓',t+' may support better breast health and risk management.');}).join('')+'</div></section></div>';}
     if(index===4){return '<p class="reader-lead strong-lead">If you notice a change, do not panic and do not delay. Follow clear steps.</p><div class="action-grid compact-cards">'+['Stay calm','Book a visit','Tell your doctor or midwife','Write down changes','Follow recommended tests','Return for results'].map(function(t,i){var icons=['🧘‍♀️','👩‍⚕️','🩺','📝','⏱️','🏥'];return enTile(t,icons[i],t+' is part of a safe and practical follow-up path.');}).join('')+'</div>';}
     if(index===6){return '<p class="reader-lead strong-lead">After treatment, regular follow-up and self-care support quality of life.</p><div class="care-grid compact-cards">'+['Follow-up visits','Physical activity','Healthy eating','Emotional support','Report new symptoms','Long-term care plan'].map(function(t,i){var icons=['📅','💪','🥗','🧠','🩺','🌿'];return enTile(t,icons[i],t+' helps recovery, confidence, and ongoing health.');}).join('')+'</div>';}
-    if(index===5){return '<div class="top-explain treatment-intro">Treatment is selected by the medical team based on the person’s condition. Sometimes one method is used, and sometimes a combination is needed.</div><div class="mini-icon-grid treatment-grid">'+['Surgery','Radiation therapy','Chemotherapy','Hormone therapy','Immunotherapy','Supportive care'].map(function(t,i){var icons=['🔪','☢️','💊','🧬','🛡️','🫶'];return enTile(t,icons[i],t+' may be recommended depending on diagnosis, stage, and medical advice.');}).join('')+'</div>';}
+    if(index===5){return '<div class="top-explain treatment-intro">Treatment is selected by the medical team based on the person’s condition. Sometimes one method is used, and sometimes a combination is needed.</div><div class="mini-icon-grid treatment-grid">'+['Surgery','Radiation therapy','Chemotherapy','Hormone therapy','Immunotherapy','Supportive care'].map(function(t,i){var icons=['🏥','☢️','💊','🧬','🛡️','🫶'];return enTile(t,icons[i],t+' may be recommended depending on diagnosis, stage, and medical advice.');}).join('')+'</div>';}
     if(index===7){return '<div class="myth-sections"><section class="myth-section"><h3>Common myths and facts</h3><div class="mini-icon-grid">'+[['Every breast lump is cancer','Many breast lumps are benign, but every new change should be checked.'],['Breast pain always means cancer','Pain is often hormonal or benign, but persistent unusual pain needs evaluation.'],['Mammography causes cancer','The radiation dose is low and the benefit of early detection is usually much greater.'],['No family history means no risk','Many people with breast cancer have no family history.'],['Breast cancer is always fatal','Early detection and modern treatment can lead to good outcomes.']].map(function(x){return enTile(x[0],'✕','<div class="myth-pop"><div class="wrong"><span>✕</span><strong>Myth</strong><p>'+x[0]+'</p></div><div class="right"><span>✓</span><strong>Fact</strong><p>'+x[1]+'</p></div></div>');}).join('')+'</div></section></div>';}
     if(index===0){return '<div class="english-full">'+[
       ['p','Breast cancer is one of the most common cancers among women. In this disease, cells in breast tissue lose their normal control and divide abnormally and excessively. These cells can form a mass that may be benign or malignant. Most breast cancers begin in the milk ducts (ductal carcinoma) or in the milk-producing lobules (lobular carcinoma).'],
@@ -206,13 +206,13 @@
       ['p','Despite significant advances in early detection and modern treatment methods, public awareness and regular early detection practices (such as mammography, clinical examination, and breast self-exam) remain the most important tools for reducing deaths caused by this disease.']
     ].map(function(x){return '<section class="chunk info-chunk '+(x[0]==='h'?'is-heading-only':'')+'">'+(x[0]==='h'?'<h3>'+x[1]+'</h3>':'<p>'+formatText(x[1])+'</p>')+'</section>';}).join('')+'</div>';}
     if(index===9){var hooks=['A brave decision before illness','A voice that awakened young women','From music to early detection advocacy','Returning with hope and awareness','From First Lady to public courage','A champion who acted early','A difficult choice with a hopeful message','Honesty that broke a taboo','Strength after unexpected news','A performance for every patient','A legend who kept going','Art, hope, and life after treatment','A preventive decision for life','From silence to awareness','From television to a message of hope'];return '<p class="reader-lead strong-lead">Short stories of courage, awareness, and hope. Tap each card to read more.</p><div class="people-grid story-grid">'+hooks.map(function(h,i){var code='celebrity-'+String(i+1).padStart(2,'0');return '<button class="person-card story-card" type="button" data-detail-title="Story '+(i+1)+'" data-detail-body="'+h+'. This story reminds us that awareness, timely care, and hope can change lives." data-detail-image="'+code+'" data-detail-label="Photo">'+imageBox('Photo',code)+'<div><h3>'+h+'</h3><strong>Hope and awareness</strong><p>Tap to read the full story of courage and early detection.</p><span class="read-more">Click to read the full story</span></div></button>';}).join('')+'</div>';}
-    if(index===31){return '<div class="support-box"><div class="support-icon">ℹ️</div><h3>About Us</h3></div>';}
+    if(index===31){return '<section class="about-card"><div class="about-badge">NIMAD · Code 977928</div><h3>About This Application</h3><p>This application is the result of collaboration between researchers and health specialists within an approved research project of NIMAD, the National Institute for Medical Research Development of Iran, under code 977928. It was developed to support early detection of breast cancer.</p><p>The application is designed as an assistive diagnostic tool that may be used alongside medical judgment and standard screening methods. It is a step toward using modern technologies to improve community health.</p></section>';}
     var source=sections[index]&&sections[index].paragraphs?sections[index].paragraphs:[];return '<div class="english-full">'+source.map(function(t){return '<section class="chunk info-chunk"><p>'+formatText(englishApprox(t))+'</p></section>';}).join('')+'</div>';
   }
   function renderTreatmentsArticle(){
     var raw=sections[5].paragraphs;
     var intro=raw[0]||'';
-    var icons=['🔪','☢️','💊','🧬','🎯','🛡️','🫶','⚕️'];
+    var icons=['🏥','☢️','💊','🧬','🎯','🛡️','🫶','⚕️'];
     var items=[];
     for(var i=1;i<raw.length;i++){
       var text=cleanTitle(raw[i]); if(!text||(text.indexOf('هدفمند')>-1&&text.indexOf('درمان')>-1)){continue;} text=text.replace(/BRCA[۱۲12]\s*یا\s*BRCA[۱۲12]،?/g,'').replace(/BRCA[۱۲12]،?/g,'');
@@ -232,10 +232,13 @@
       var virtual=sectionIndex===30;
       var s=metaFor(sectionIndex);
       var item=document.createElement('button');
-      item.type='button'; item.className='path-card'; item.setAttribute('data-click-label',clickHint());
+      item.type='button'; item.className='path-card path-card-section-'+sectionIndex; item.setAttribute('data-click-label',clickHint());
       if(virtual){item.setAttribute('data-self-exam','true');}else{item.setAttribute('data-index',sectionIndex);}
+      if(sectionIndex===0){item.className+=' path-card-feature path-card-info';}
+      if(sectionIndex===1||sectionIndex===30){item.className+=' path-card-highlight';}
+      if(sectionIndex===31){item.className+=' path-card-about';}
       var title=s.title;
-      item.innerHTML='<span class="path-icon">'+escapeHtml(s.icon||'💗')+'</span><span class="path-copy"><strong>'+escapeHtml(title)+'</strong><small>'+escapeHtml(s.subtitle)+'</small></span>';
+      item.innerHTML='<span class="path-icon">'+escapeHtml(s.icon||'✦')+'</span><span class="path-copy"><strong>'+escapeHtml(title)+'</strong><small>'+escapeHtml(s.subtitle)+'</small></span>';
       steps.appendChild(item);
     }
   }
@@ -263,7 +266,7 @@
   }
   function renderReader(index){
     if(index!==30&&index!==31&&(index<0||index>=sections.length)){return;} currentIndex=index;
-    var s=index===30?{title:'خودآزمایی پستان',subtitle:'آموزش کامل و مرحله‌به‌مرحله'}:(index===31?{title:'درباره ما',subtitle:'به‌زودی تکمیل می‌شود'}:sections[index]); var body='',specialClass='';
+    var s=index===30?{title:'خودآزمایی پستان',subtitle:'آموزش کامل و مرحله‌به‌مرحله'}:(index===31?{title:'درباره ما',subtitle:'معرفی اپلیکیشن و پشتوانه علمی'}:sections[index]); var body='',specialClass='';
     if(isEnglish()){body=renderEnglishArticle(index);specialClass=' english-article';}
     else if(index===1){body=renderSymptomsArticle();specialClass=' symptoms-article';}
     else if(index===30){body=renderSelfExamArticle();specialClass=' self-exam-article';}
@@ -274,7 +277,7 @@
     else if(index===5){body=renderTreatmentsArticle();specialClass=' treatments-article';}
     else if(index===6){body=renderAfterTreatmentArticle();specialClass=' care-article';}
     else if(index===9){body=renderCelebritiesArticle();specialClass=' celebrities-article';}
-    else if(index===31){body='<div class="support-box"><div class="support-icon">ℹ️</div><h3>درباره ما</h3></div>';specialClass=' about-article';}
+    else if(index===31){body='<section class="about-card"><div class="about-badge">نیماد · کد ۹۷۷۹۲۸</div><h3>درباره این اپلیکیشن</h3><p>این اپلیکیشن حاصل نتیجه همکاری پژوهشگران و متخصصان حوزه سلامت در قالب یک طرح تحقیقاتی مصوب «نیماد» (مؤسسه ملی توسعه تحقیقات علوم پزشکی ایران) با کد ۹۷۷۹۲۸ است که با هدف کمک به تشخیص زودهنگام سرطان پستان توسعه یافته است.</p><p>این اپلیکیشن به‌عنوان یک ابزار کمک‌تشخیصی طراحی شده که می‌تواند در کنار نظر پزشک و روش‌های استاندارد غربالگری مورد استفاده قرار گیرد و گامی در جهت بهره‌گیری از فناوری‌های نوین برای ارتقای سلامت جامعه محسوب می‌شود.</p></section>';specialClass=' about-article';}
     else if(index===0){body=renderCancerOverviewArticle();specialClass=' overview-article';}
     else{body=renderDefaultArticle(index);}
     var orderPos=mainOrder.indexOf(index); var prevIndex=orderPos>0?mainOrder[orderPos-1]:-1; var nextIndex=orderPos>-1&&orderPos<mainOrder.length-1?mainOrder[orderPos+1]:-1;
