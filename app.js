@@ -12,6 +12,7 @@
   var currentLang = 'fa';
 
   function escapeHtml(value){return String(value).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch];});}
+  function iconHtml(icon){return icon==='pink-ribbon'?'<img class="pink-ribbon-img" src="assets/images/pink-ribbon.svg" alt="" aria-hidden="true">':escapeHtml(icon||'');}
   function formatText(value){var safe=escapeHtml(value);return safe.replace(/^([^:：]{2,48})[:：]/,'<strong class="text-key">$1:</strong>');}
   function cleanTitle(text){return String(text||'').replace(/^گزینه\s*زیر\s*مجموعه[:：]?\s*/,'').replace(/^زیرمجموعه[:：]?\s*/,'').replace(/\s*\(گزینه اصلی\)\s*/,'').trim();}
   function isLikelyHeading(text,index){if(index===0||text.length>88||/[.!؟،:]$/.test(text)){return false;}return true;}
@@ -132,7 +133,7 @@
     6:['Care After Treatment','Follow-up, recovery, and quality of life','♥'],
     7:['Myths and Facts','Common wrong beliefs corrected','?'],
     9:['From Stage to Battle','Stories of hope and awareness','★'],
-    30:['Breast Self-Exam','Complete step-by-step guide','🎗️'],
+    30:['Breast Self-Exam','Complete step-by-step guide','pink-ribbon'],
     31:['About Us','About this research-based application','✦']
   };
   function isEnglish(){return currentLang==='en';}
@@ -140,10 +141,10 @@
   function clickHint(){return isEnglish()?'Tap to open':'برای باز کردن لمس کنید';}
   function metaFor(index){
     if(isEnglish() && enPath[index]){return {title:enPath[index][0],subtitle:enPath[index][1],icon:enPath[index][2]};}
-    if(index===30){return {title:'خودآزمایی پستان',subtitle:'آموزش کامل مرحله‌به‌مرحله',icon:'🎗️'};}
+    if(index===30){return {title:'خودآزمایی پستان',subtitle:'آموزش کامل مرحله‌به‌مرحله',icon:'pink-ribbon'};}
     if(index===31){return {title:'درباره ما',subtitle:'معرفی اپلیکیشن و پشتوانه علمی',icon:'✦'};}
     if(index===9){return {title:'از صحنه تا نبرد',subtitle:sections[9].subtitle,icon:sections[9].icon};}
-    return {title:cleanTitle(sections[index].title),subtitle:sections[index].subtitle,icon:sections[index].icon};
+    var icon=sections[index].icon; if(index===0){icon='pink-ribbon';} return {title:cleanTitle(sections[index].title),subtitle:sections[index].subtitle,icon:icon};
   }
   function compactInteractivePage(sectionIndex, lead, className, icons){
     var raw=sections[sectionIndex].paragraphs;
@@ -238,7 +239,7 @@
       if(sectionIndex===1||sectionIndex===30){item.className+=' path-card-highlight';}
       if(sectionIndex===31){item.className+=' path-card-about';}
       var title=s.title;
-      item.innerHTML='<span class="path-icon">'+escapeHtml(s.icon||'✦')+'</span><span class="path-copy"><strong>'+escapeHtml(title)+'</strong><small>'+escapeHtml(s.subtitle)+'</small></span>';
+      item.innerHTML='<span class="path-icon">'+iconHtml(s.icon||'✦')+'</span><span class="path-copy"><strong>'+escapeHtml(title)+'</strong><small>'+escapeHtml(s.subtitle)+'</small></span>';
       steps.appendChild(item);
     }
   }

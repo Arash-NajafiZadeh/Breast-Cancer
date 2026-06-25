@@ -34,3 +34,10 @@ body{padding-top:0}.hero{padding-top:22px}.path-card,.detail-tile{overflow:hidde
 .about-card p{position:relative;margin:12px 0;color:#312330;line-height:2.08}
 .about-badge{position:relative;display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:900;box-shadow:0 10px 24px rgba(154,45,119,.24)}
 @media (min-width:700px){.path-card-feature{grid-column:1/-1}.path-card-about{grid-column:1/-1}.path-card-highlight{min-height:118px}}
+.ribbon-mark img{display:block;width:72px;height:86px;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(199,47,114,.22))}
+.pink-ribbon-img{display:block;width:32px;height:40px;object-fit:contain;filter:drop-shadow(0 5px 9px rgba(199,47,114,.22))}
+.path-card-feature .pink-ribbon-img,.path-card-highlight .pink-ribbon-img{width:40px;height:50px;filter:drop-shadow(0 7px 12px rgba(255,255,255,.28))}
+.path-card-feature .path-icon:has(.pink-ribbon-img),.path-card-highlight .path-icon:has(.pink-ribbon-img){background:linear-gradient(135deg,#fff7fb,#ffe8f1)!important;color:#be185d!important;box-shadow:0 10px 22px rgba(199,47,114,.12),inset 0 0 0 1px rgba(236,72,153,.16)}
+.path-card-feature .pink-ribbon-img,.path-card-highlight .pink-ribbon-img{width:43px;height:56px;filter:drop-shadow(0 6px 10px rgba(157,23,77,.18))}
+.ribbon-mark{background:linear-gradient(135deg,#fff,#fff3f8)!important}
+.ribbon-mark img{width:78px;height:92px;filter:drop-shadow(0 9px 14px rgba(157,23,77,.2))}
